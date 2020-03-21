@@ -1,6 +1,6 @@
 {
   "name": "ngx-deep-equals-pure",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JavaScript object deep equals service for Angular projects",
   "author": "Daniel Puckowski",
   "repository": {
@@ -24,8 +24,8 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "tslib": "^1.9.3"
+    "@angular/common": ">=8.0.0",
+    "@angular/core": ">=8.0.0",
+    "tslib": ">=1.9.3"
   }
 }

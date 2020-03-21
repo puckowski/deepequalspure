@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
-import { NgxDeepEqualsPureComponent } from './ngx-deep-equals-pure.component';
-
-
 
 @NgModule({
-  declarations: [NgxDeepEqualsPureComponent],
+  declarations: [],
   imports: [
   ],
-  exports: [NgxDeepEqualsPureComponent]
+  exports: []
 })
 export class NgxDeepEqualsPureModule { }
