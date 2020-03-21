@@ -253,4 +253,385 @@ describe('NgxDeepEqualsPureService', () => {
 
     expect(isEquals === false).toBeTruthy('obj1 should not equal obj6');
   });
+
+  it('should be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        [
+          [{ m: 5, l: 6 }, 2, 'a', 6.7],
+          [{ a: 2722 }, 6.7989, 'u', 3],
+          ['c', 9.8, 5, 6, 10.112, 't', { e: 434, f: 5834 }, { y: 6984, g: 584 }, { r: 373, p: 583 }],
+          [9.8, 'b', 5, { h: 5, b: 3.12 }, { f: 7, k: 6 }]
+        ],
+        12.6,
+        809,
+        () => { console.log('er'); }
+      ]
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals).toBeTruthy('obj1 should equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {};
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a']
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        [
+          [{ m: 5 }, 2, 'a', 6.7],
+          [{ a: 2722 }, 6.7989, 'u', 3],
+          ['c', 9.8, 5, 6, 10.112, 't', { e: 434, f: 5834 }, { y: 6984, g: 584 }, { r: 373, p: 583 }],
+          [9.8, 'b', 5, { h: 5, b: 3.12 }, { f: 7, k: 6 }]
+        ],
+        12.6,
+        809,
+        () => { console.log('er'); }
+      ]
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        [
+          [{ m: 5, l: 6 }, 2, 'a', 6.7],
+          [{ a: 2722 }, 6.7989, 'u', 3],
+          ['c', 9.8, 5, 6, 10.112, { e: 434, f: 5834 }, { y: 6984, g: 584 }, { r: 373, p: 583 }],
+          [9.8, 'b', 5, { h: 5, b: 3.12 }, { f: 7, k: 6 }]
+        ],
+        12.6,
+        809,
+        () => { console.log('er'); }
+      ]
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
+
+  it('should not be equal', () => {
+    const obj1: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { t: () => { console.log('h'); }, g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        12.6,
+        809,
+        () => { console.log('er'); },
+        [
+          [{ l: 6, m: 5 }, 'a', 2, 6.7],
+          ['b', 5, 9.8, { k: 6, f: 7 }, { h: 5, b: 3.12 }],
+          ['c', 't', 5, 6, 9.8, 10.112, { g: 584, y: 6984 }, { f: 5834, e: 434 }, { p: 583, r: 373 }],
+          ['u', 6.7989, 3, { a: 2722 }]
+        ]
+      ]
+    };
+
+    const obj2: any = {
+      b: () => {
+        console.log('foo');
+      },
+      e: 'abcbc',
+      a: [
+        { 'a': 12.7 },
+        { 'c': 37.6 }
+      ],
+      c: 126.8,
+      f: ['f', 'a'],
+      g: [
+        { g: 'a', j: 12 },
+        ['b', 2, { p: '123' }],
+        '789',
+        [
+          [{ m: 5, l: 6 }, 2, 'a', 6.7],
+          [{ a: 2722 }, 6.7989, 'u', 3],
+          ['c', 9.8, 5, 6, 10.112, 't', { e: 434, f: 5834 }, { y: 6984, g: 584 }, { r: 373, p: 583 }],
+          [9.8, 'b', 5, { h: 5, b: 3.12 }, { f: 7, k: 6 }]
+        ],
+        12.6,
+        809,
+        () => { console.log('er'); }
+      ]
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
+  });
 });
