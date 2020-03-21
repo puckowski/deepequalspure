@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SimpleDeepEqualBenchmarkComponent } from './simple-deep-equal-benchmark/simple-deep-equal-benchmark.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SimpleDeepEqualBenchmarkComponent
   ],
   imports: [
     BrowserModule,
