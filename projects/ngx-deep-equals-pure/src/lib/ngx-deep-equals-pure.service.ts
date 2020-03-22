@@ -8,7 +8,11 @@ export class NgxDeepEqualsPureService {
   constructor() { }
 
   public deepEquals(firstObject: any, secondObject: any): boolean {
-    if (Array.isArray(firstObject) === true) {
+    if (firstObject === null && secondObject !== null) {
+      return false;
+    } else if (secondObject === null && firstObject !== null) {
+      return false;
+    } else if (Array.isArray(firstObject) === true) {
       if (Array.isArray(secondObject) === false) {
         return false;
       } else if (firstObject.length !== secondObject.length) {

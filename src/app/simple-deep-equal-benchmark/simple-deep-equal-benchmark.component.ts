@@ -160,7 +160,7 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
   private obj8: any = { b: 'a', c: 2 };
   private obj9: any = { c: 2, b: 'a' };
 
-  private readonly DEFAULT_BENCH_RUNS: number = 1;
+  private readonly DEFAULT_BENCH_RUNS: number = 5;
 
   private isMatch: any[];
   private isMatchLodash: any[];
