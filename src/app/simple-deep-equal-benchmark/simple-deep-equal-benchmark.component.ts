@@ -160,47 +160,70 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
   private obj8: any = { b: 'a', c: 2 };
   private obj9: any = { c: 2, b: 'a' };
 
-  private readonly DEFAULT_BENCH_RUNS: number = 5;
-
   private isMatch: any[];
   private isMatchLodash: any[];
   private isMatchDeepEqual: any;
 
-  private isMatchTimes: number[];
   private isMatchAverage: number;
 
-  private isMatchLodashTimes: number[];
   private isMatchLodashAverage: number;
 
-  private isMatchDeepEqualTimes: number[];
   private isMatchDeepEqualAverage: number;
 
   private benchData: any[];
   private testData: any[];
+
+  private isLoading: boolean;
 
   constructor(private ngxDeepEquals: NgxDeepEqualsPureService) {
     this.isMatch = [];
     this.isMatchLodash = [];
     this.isMatchDeepEqual = [];
 
-    this.isMatchTimes = [];
     this.isMatchAverage = 0.00;
 
-    this.isMatchDeepEqualTimes = [];
     this.isMatchDeepEqualAverage = 0.00;
 
-    this.isMatchLodashTimes = [];
     this.isMatchLodashAverage = 0.00;
 
     this.benchData = [];
     this.testData = [];
+
+    this.isLoading = true;
   }
 
   ngOnInit(): void {
-    this.runSimpleBenchmark();
     this.runSimpleTests();
-    this.mergeBenchData();
     this.mergeTestData();
+    this.configureGlobalShim();
+
+    if (typeof Worker !== 'undefined') {
+      // Create a new
+      const worker = new Worker('./simple-deep-equal-benchmark.worker', { type: 'module' });
+      worker.onmessage = ({ data }) => {
+        this.isLoading = false;
+        this.benchData = data.data;
+        this.isMatchAverage = data.ngx;
+        this.isMatchDeepEqualAverage = data.deep;
+        this.isMatchLodashAverage = data.lodash;
+      };
+
+      worker.postMessage('run benchmark');
+    } else {
+      // Web workers are not supported in this environment.
+      // You should add a fallback so that your program still executes correctly.
+    }
+  }
+
+  private configureGlobalShim(): void {
+    if (self['global'] === undefined) {
+      Object.defineProperty(self, 'global', {
+        enumerable: true,
+        writable: true,
+        configurable: true,
+        value: self
+      });
+    }
   }
 
   private mergeTestData(): void {
@@ -216,83 +239,6 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
 
       this.testData.push(result);
     }
-  }
-
-  private mergeBenchData(): void {
-    for (let i = 0; i < this.DEFAULT_BENCH_RUNS; ++i) {
-      const result: any = {
-        ngx: this.getIsMatchTimes()[i],
-        deep: this.getIsMatchDeepEqualTimes()[i],
-        lodash: this.getIsMatchLodashTimes()[i]
-      };
-
-      this.benchData.push(result);
-    }
-  }
-
-  private runSimpleBenchmark(): void {
-    let benchAverage = 0;
-    for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
-      const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj3);
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj4);
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj5);
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj6);
-        this.ngxDeepEquals.deepEquals(this.obj1, this.obj7);
-        this.ngxDeepEquals.deepEquals(this.obj8, this.obj9);
-      }
-      const endDate = new Date();
-      const seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-
-      this.isMatchTimes.push(seconds);
-      benchAverage += seconds;
-    }
-    benchAverage /= this.DEFAULT_BENCH_RUNS;
-    this.isMatchAverage = benchAverage;
-
-    benchAverage = 0;
-    for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
-      const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
-        deepEqual(this.obj1, this.obj2);
-        deepEqual(this.obj1, this.obj3);
-        deepEqual(this.obj1, this.obj4);
-        deepEqual(this.obj1, this.obj5);
-        deepEqual(this.obj1, this.obj6);
-        deepEqual(this.obj1, this.obj7);
-        deepEqual(this.obj8, this.obj9);
-      }
-      const endDate = new Date();
-      const seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-
-      this.isMatchDeepEqualTimes.push(seconds);
-      benchAverage += seconds;
-    }
-    benchAverage /= this.DEFAULT_BENCH_RUNS;
-    this.isMatchDeepEqualAverage = benchAverage;
-
-    benchAverage = 0;
-    for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
-      const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
-        _.isEqual(this.obj1, this.obj2);
-        _.isEqual(this.obj1, this.obj3);
-        _.isEqual(this.obj1, this.obj4);
-        _.isEqual(this.obj1, this.obj5);
-        _.isEqual(this.obj1, this.obj6);
-        _.isEqual(this.obj1, this.obj7);
-        _.isEqual(this.obj8, this.obj9);
-      }
-      const endDate = new Date();
-      const seconds = (endDate.getTime() - startDate.getTime()) / 1000;
-
-      this.isMatchLodashTimes.push(seconds);
-      benchAverage += seconds;
-    }
-    benchAverage /= this.DEFAULT_BENCH_RUNS;
-    this.isMatchLodashAverage = benchAverage;
   }
 
   private runSimpleTests(): void {
@@ -333,24 +279,12 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
     return this.isMatchDeepEqual;
   }
 
-  public getIsMatchTimes(): number[] {
-    return this.isMatchTimes;
-  }
-
   public getIsMatchAverage(): number {
     return this.isMatchAverage;
   }
 
-  public getIsMatchLodashTimes(): number[] {
-    return this.isMatchLodashTimes;
-  }
-
   public getIsMatchLodashAverage(): number {
     return this.isMatchLodashAverage;
-  }
-
-  public getIsMatchDeepEqualTimes(): number[] {
-    return this.isMatchDeepEqualTimes;
   }
 
   public getIsMatchDeepEqualAverage(): number {
@@ -363,6 +297,10 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
 
   public getTestData(): any[] {
     return this.testData;
+  }
+
+  public getIsLoading(): boolean {
+    return this.isLoading;
   }
 
 }
