@@ -128,7 +128,7 @@ export class NgxDeepEqualsPureService {
           }
         }
       }
-    } else if (typeof firstObject === 'object') {
+    } else if (typeof firstObject === 'object' && firstObject !== null) {
       if (typeof secondObject !== 'object') {
         return false;
       } else {
@@ -153,7 +153,7 @@ export class NgxDeepEqualsPureService {
     } else {
       if (Array.isArray(secondObject) === true) {
         return false;
-      } else if (typeof secondObject === 'object') {
+      } else if (typeof secondObject === 'object' && secondObject !== null) {
         return false;
       } else {
         if (typeof firstObject === 'function') {

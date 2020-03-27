@@ -915,4 +915,42 @@ describe('NgxDeepEqualsPureService', () => {
 
     expect(isEquals).toBeTruthy('obj1 should equal obj2');
   });
+
+  it('should be equal', () => {
+    const obj1: any = {
+      first: 0,
+      rows: 2,
+      sortOrder: 1,
+      filters: {},
+      globalFilter: null,
+      multiSortMeta: [],
+      sortField: undefined
+    };
+    Object.defineProperty(obj1, 'filterID', {
+      enumerable: true,
+      writable: true,
+      configurable: true,
+      value: 9067
+    });
+
+    const obj2: any = {
+      globalFilter: null,
+      multiSortMeta: [],
+      sortField: undefined,
+      rows: 2,
+      sortOrder: 1,
+      filters: {},
+      first: 0
+    };
+    Object.defineProperty(obj2, 'filterID', {
+      enumerable: true,
+      writable: true,
+      configurable: true,
+      value: 9067
+    });
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals).toBeTruthy('obj1 should equal obj2');
+  });
 });
