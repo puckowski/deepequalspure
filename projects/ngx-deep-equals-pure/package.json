@@ -1,6 +1,6 @@
 {
   "name": "ngx-deep-equals-pure",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "JavaScript object deep equals service for Angular projects",
   "author": "Daniel Puckowski",
   "repository": {

@@ -10,7 +10,7 @@ https://github.com/puckowski/deepequalspure/issues
 
 ## Size
 
-The minified ES2015 size of ngx-deep-equals-pure is 8.92KB including the source map.
+The minified ES2015 size of ngx-deep-equals-pure is 9.18KB including the source map.
 
 |ngx-deep-equals-pure |deep-equal |Lodash |
 |---------------------|-----------|-------|

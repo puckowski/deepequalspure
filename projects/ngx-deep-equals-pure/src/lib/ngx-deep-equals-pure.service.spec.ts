@@ -879,4 +879,40 @@ describe('NgxDeepEqualsPureService', () => {
 
     expect(isEquals === false).toBeTruthy('obj1 should not equal obj2');
   });
+
+  it('should be equal', () => {
+    const obj1: any = {
+      first: 30,
+      rows: 10,
+      sortField: 'brand',
+      sortOrder: 1,
+      filters: {
+        year: {
+          matchMode: 'contains',
+          value: '19'
+        }
+      },
+      globalFilter: undefined,
+      multiSortMeta: []
+    };
+
+    const obj2: any = {
+      sortField: 'brand',
+      rows: 10,
+      filters: {
+        year: {
+          matchMode: 'contains',
+          value: '19'
+        }
+      },
+      sortOrder: 1,
+      multiSortMeta: [],
+      first: 30,
+      globalFilter: undefined
+    };
+
+    const isEquals: boolean = service.deepEquals(obj1, obj2);
+
+    expect(isEquals).toBeTruthy('obj1 should equal obj2');
+  });
 });

@@ -136,17 +136,12 @@ export class NgxDeepEqualsPureService {
 
         if (Object.keys(firstObject).length === Object.keys(secondObject).length) {
           for (const [key, value] of Object.entries(firstObject)) {
-            if (secondObject[key] === undefined) {
-              match = false;
+            const secondValue = secondObject[key];
+
+            match = this.deepEquals(value, secondValue);
+
+            if (match === false) {
               break;
-            } else {
-              const secondValue = secondObject[key];
-
-              match = this.deepEquals(value, secondValue);
-
-              if (match === false) {
-                break;
-              }
             }
           }
         } else {
