@@ -166,6 +166,7 @@ export class SimpleDeepEqualBenchmark {
   private obj9: any = { c: 2, b: 'a' };
 
   private readonly DEFAULT_BENCH_RUNS: number = 20;
+  private readonly DEFAULT_BENCH_ITERATIONS: number = 100;
 
   private isMatch: any[];
   private isMatchLodash: any[];
@@ -202,6 +203,7 @@ export class SimpleDeepEqualBenchmark {
   }
 
   public run(): void {
+    this.warmup();
     this.runSimpleBenchmark();
     this.mergeBenchData();
   }
@@ -223,11 +225,43 @@ export class SimpleDeepEqualBenchmark {
     this.benchResults.deep = this.getIsMatchDeepEqualAverage();
   }
 
+  private warmup(): void {
+    for (let i = 0; i < 10; ++i) {
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj3);
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj4);
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj5);
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj6);
+      this.ngxDeepEquals.deepEquals(this.obj1, this.obj7);
+      this.ngxDeepEquals.deepEquals(this.obj8, this.obj9);
+    }
+
+    for (let i = 0; i < 10; ++i) {
+      deepEqual(this.obj1, this.obj2);
+      deepEqual(this.obj1, this.obj3);
+      deepEqual(this.obj1, this.obj4);
+      deepEqual(this.obj1, this.obj5);
+      deepEqual(this.obj1, this.obj6);
+      deepEqual(this.obj1, this.obj7);
+      deepEqual(this.obj8, this.obj9);
+    }
+
+    for (let i = 0; i < 10; ++i) {
+      _.isEqual(this.obj1, this.obj2);
+      _.isEqual(this.obj1, this.obj3);
+      _.isEqual(this.obj1, this.obj4);
+      _.isEqual(this.obj1, this.obj5);
+      _.isEqual(this.obj1, this.obj6);
+      _.isEqual(this.obj1, this.obj7);
+      _.isEqual(this.obj8, this.obj9);
+    }
+  }
+
   private runSimpleBenchmark(): void {
     let benchAverage = 0;
     for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
       const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
+      for (let i = 0; i < this.DEFAULT_BENCH_ITERATIONS; ++i) {
         this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
         this.ngxDeepEquals.deepEquals(this.obj1, this.obj3);
         this.ngxDeepEquals.deepEquals(this.obj1, this.obj4);
@@ -248,7 +282,7 @@ export class SimpleDeepEqualBenchmark {
     benchAverage = 0;
     for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
       const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
+      for (let i = 0; i < this.DEFAULT_BENCH_ITERATIONS; ++i) {
         deepEqual(this.obj1, this.obj2);
         deepEqual(this.obj1, this.obj3);
         deepEqual(this.obj1, this.obj4);
@@ -269,7 +303,7 @@ export class SimpleDeepEqualBenchmark {
     benchAverage = 0;
     for (let n = 0; n < this.DEFAULT_BENCH_RUNS; ++n) {
       const startDate = new Date();
-      for (let i = 0; i < 5000; ++i) {
+      for (let i = 0; i < this.DEFAULT_BENCH_ITERATIONS; ++i) {
         _.isEqual(this.obj1, this.obj2);
         _.isEqual(this.obj1, this.obj3);
         _.isEqual(this.obj1, this.obj4);

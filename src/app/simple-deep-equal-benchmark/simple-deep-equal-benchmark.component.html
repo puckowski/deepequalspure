@@ -27,7 +27,9 @@
     </table>
 </div>
 <div *ngIf="getIsLoading() === true">
-    <p>Running benchmark...</p>
+    Running benchmark...
+    <div class="spinner-border" role="status">
+    </div>
 </div>
 
 <h1>Simple Test Results</h1>

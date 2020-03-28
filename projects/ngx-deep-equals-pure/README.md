@@ -2,6 +2,8 @@
 
 This is a package intended to provide a deep equals function for JavaScript objects without requiring numerous dependencies. Other packages which provide a deep equals function, like Lodash or deep-equal, require a large number of dependencies or they are themselves very large. This contributes to unnecessary bloat and, ultimately, poor application load performance.
 
+Unlike deep-equal and Lodash, ngx-deep-equals-pure can correctly handle function properties. Furthermore, ngx-deep-equals-pure properly determines equality for arrays of complex objects when the order of the data differs where deep-equal and Lodash fail to do so.
+
 Repository:
 https://github.com/puckowski/deepequalspure
 
@@ -10,7 +12,7 @@ https://github.com/puckowski/deepequalspure/issues
 
 ## Size
 
-The minified ES2015 size of ngx-deep-equals-pure is 9.18KB including the source map.
+The minified ES2015 size of ngx-deep-equals-pure is 9.18KB which includes ESM5, ESM2015, FESM5, and FESM2015 bundles.
 
 |ngx-deep-equals-pure |deep-equal |Lodash |
 |---------------------|-----------|-------|
@@ -18,31 +20,31 @@ The minified ES2015 size of ngx-deep-equals-pure is 9.18KB including the source 
 
 ## Performance
 
-The following is the latest performance result of 5,000 comparisons run in a web worker.
+The following is the latest performance result of 2,000 comparisons run in a web worker.
 
 |ngx-deep-equals-pure |deep-equal |Lodash isEqual |
-|-----------|---------|--------|
-|	0.3   | 0.06  |	13.57  |
-|	0.275 | 0.035 | 13.833 |
-|	0.276 | 0.036	| 12.831 |
-|	0.276 | 0.036	| 11.556 |
-|	0.278 | 0.043	| 11.553 |
-|	0.271 | 0.035	| 12.933 |
-|	0.272 | 0.032	| 14.445 |
-|	0.293 | 0.032	| 14.458 |
-|	0.279 | 0.032	| 14.461 |
-|	0.272 | 0.032	| 14.464 |
-|	0.272 | 0.032	| 14.443 |
-|	0.272 | 0.031	| 14.443 |
-|	0.272 | 0.032	| 14.461 |
-|	0.273 | 0.032	| 14.43  |
-|	0.271 | 0.033	| 14.455 |
-|	0.273 | 0.034	| 14.471 | 
-|	0.273 | 0.032	| 14.482 |
-|	0.273 | 0.034	| 14.415 |
-|	0.273 | 0.033	| 14.46  |
-|	0.271 | 0.033	| 14.465 |
-| **Avg: 0.27575s**   | **Avg: 0.034950s** | **Avg: 13.931450s** |
+|---------------------|-----------|---------------|
+|	0.023 | 0.006 |	0.091 |
+|	0.007 | 0.008 |	0.107 |
+|	0.006 | 0.004	| 0.106 |
+|	0.006 | 0.001 |	0.115 |
+|	0.006 | 0.001 |	0.115 |
+|	0.006 | 0.001 |	0.117 |
+|	0.005 | 0.001 |	0.117 |
+|	0.006 | 0.001 |	0.12  |
+|	0.006 | 0.001 |	0.118 |
+|	0.006 | 0.001 |	0.117 |
+|	0.006 | 0.001 |	0.117 |
+|	0.006 | 0.001 |	0.116 |
+|	0.006 | 0.001 |	0.118 |
+|	0.006 | 0.001 |	0.118 |
+|	0.006 | 0.001 |	0.118 |
+|	0.005 | 0.001 |	0.118 |
+|	0.006 | 0.001 |	0.119 |
+|	0.006 | 0.001 |	0.118 |
+|	0.006 | 0	    | 0.118 |
+|	0.006 | 0.002	| 0.117 |
+| **Avg: 0.0068s**   | **Avg: 0.00175s** | **Avg: 0.1149s** |
 
 ## Tests
 ```javascript
@@ -279,3 +281,13 @@ Use command:
 ```
 ng build NgxDeepEqualsPure --prod
 ```
+
+## Running benchmark
+
+Use command:
+
+```
+ng serve
+```
+
+Then navigate to localhost:4200 in your preferred browser.
