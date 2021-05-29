@@ -199,7 +199,7 @@ export class SimpleDeepEqualBenchmarkComponent implements OnInit {
 
     if (typeof Worker !== 'undefined') {
       // Create a new
-      const worker = new Worker('./simple-deep-equal-benchmark.worker', { type: 'module' });
+      const worker = new Worker(new URL('./simple-deep-equal-benchmark.worker', import.meta.url), { type: 'module' });
       worker.onmessage = ({ data }) => {
         this.isLoading = false;
         this.benchData = data.data;

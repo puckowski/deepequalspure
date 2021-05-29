@@ -3,4 +3,3 @@
  */
 
 export * from './lib/ngx-deep-equals-pure.service';
-export * from './lib/ngx-deep-equals-pure.module';

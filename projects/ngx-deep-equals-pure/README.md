@@ -1,5 +1,8 @@
 # NgxDeepEqualsPure
 
+Note:
+Please use version 0.3.0+ for Angular 12.0+ projects. Please use version 0.2.5 for projects using Angular 11.0 and below. Version 0.4.0+ supports use in Web Workers.
+
 This is a package intended to provide a deep equals function for JavaScript objects without requiring numerous dependencies. Other packages which provide a deep equals function, like Lodash or deep-equal, require a large number of dependencies or they are themselves very large. This contributes to unnecessary bloat and, ultimately, poor application load performance.
 
 Unlike deep-equal and Lodash, ngx-deep-equals-pure can correctly handle function properties. Furthermore, ngx-deep-equals-pure properly determines equality for arrays of complex objects when the order of the data differs where deep-equal and Lodash fail to do so.
@@ -291,3 +294,6 @@ ng serve
 ```
 
 Then navigate to localhost:4200 in your preferred browser.
+
+Note:
+It may be necessary to run the build command before trying to run the benchmark.
