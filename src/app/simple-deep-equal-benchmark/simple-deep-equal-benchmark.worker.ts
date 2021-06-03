@@ -1,14 +1,5 @@
 /// <reference lib="webworker" />
 
-var global = self;
-Object.defineProperty(self, 'global', {
-  enumerable: true,
-  writable: true,
-  configurable: true,
-  value: self
-});
-
-import './global-shim-worker';
 import * as _ from 'lodash';
 import * as deepEqual from 'deep-equal';
 import { NgxDeepEqualsPureService } from 'ngx-deep-equals-pure';

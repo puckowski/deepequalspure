@@ -77,52 +77,15 @@ this.isMatchDeepEqual.push(deepEqual(obj8, obj9));
 ```
 
 ## Results
-```javascript
-ngx-deep-equals-pure
-Test 1 is a match: true
-
-Test 2 is a match: false
-
-Test 3 is a match: false
-
-Test 4 is a match: false
-
-Test 5 is a match: false
-
-Test 6 is a match: true
-
-Test 7 is a match: true
-
-Lodash
-Test 1 is a match: false
-
-Test 2 is a match: false
-
-Test 3 is a match: false
-
-Test 4 is a match: false
-
-Test 5 is a match: false
-
-Test 6 is a match: false
-
-Test 7 is a match: true
-
-deep-equal
-Test 1 is a match: false
-
-Test 2 is a match: false
-
-Test 3 is a match: false
-
-Test 4 is a match: false
-
-Test 5 is a match: false
-
-Test 6 is a match: false
-
-Test 7 is a match: true
-```
+|#|Actual  |ngx-deep-equals-pure |deep-equal |Lodash isEqual |
+|---|-------------|---------------------|-----------|---------------|
+|1  |	true        | true                | false     | false         |
+|2  | false       | false               | false     | false         |
+|3  | false       | false               | false     | false         |
+|4  | false       | false               | false     | false         |
+|5  | false       | false               | false     | false         |
+|6  | true        | true                | false     | false         |
+|7  | true        | true                | true      | true          |
 
 ## Input objects
 ```javascript
@@ -297,3 +260,5 @@ Then navigate to localhost:4200 in your preferred browser.
 
 Note:
 It may be necessary to run the build command before trying to run the benchmark.
+
+See the GitHub repository at https://github.com/puckowski/deepequalspure for example usage of ngx-deep-equals-pure in an Angular application and for example usage in a Web Worker.
