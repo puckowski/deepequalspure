@@ -1,34 +1,12 @@
 {
   "name": "ngx-deep-equals-pure",
-  "version": "0.4.1",
-  "description": "JavaScript object deep equals service for Angular projects",
-  "author": "Daniel Puckowski",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/puckowski/deepequalspure.git"
-  },
-  "bugs": {
-    "url": "https://github.com/puckowski/deepequalspure/issues"
-  },
-  "homepage": "https://github.com/puckowski/deepequalspure",
-  "keywords": [
-    "angular",
-    "isequal",
-    "deep-equal",
-    "deepEqual",
-    "fast-deep-equal",
-    "equals",
-    "equality",
-    "comparison",
-    "object",
-    "deep-equal-in-any-order"
-  ],
-  "license": "MIT",
-  "dependencies": {
-    "tslib": "^2.0.0"
-  },
+  "version": "0.4.2",
   "peerDependencies": {
-    "@angular/common": ">=12.0.0",
-    "@angular/core": ">=12.0.0"
-  }
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
 }

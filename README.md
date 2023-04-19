@@ -21,6 +21,56 @@ The minified ES2015 size of ngx-deep-equals-pure is 9.18KB which includes ESM5, 
 |---------------------|-----------|-------|
 |9.18KB |3.44KB |528KB |
 
+## npm Package
+
+https://www.npmjs.com/package/ngx-deep-equals-pure
+
+## Usage
+
+In the appropriate module, such as ```AppModule```, add the following to ```providers```:
+
+```
+providers: [NgxDeepEqualsPureService],
+```
+
+In a component part of a module where NgxDeepEqualsPureService is provided, inject the deep equals service in the constructor like so:
+
+```
+constructor(private ngxDeepEquals: NgxDeepEqualsPureService) {
+```
+
+Then use NgxDeepEqualsPure like so:
+
+```
+this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
+```
+
+Alternatively, construct a standalone component like the following:
+
+```
+import { Component } from '@angular/core';
+import { NgxDeepEqualsPureModule, NgxDeepEqualsPureService } from 'NgxDeepEqualsPure';
+
+@Component({
+  selector: 'app-standalone-test',
+  templateUrl: './standalone-test.component.html',
+  styleUrls: ['./standalone-test.component.scss'],
+  standalone: true,
+  imports: [NgxDeepEqualsPureModule]
+})
+export class StandaloneTestComponent {
+
+  private obj8: any = { b: 'a', c: 2 };
+  private obj9: any = { c: 2, b: 'a' };
+
+  public isStandaloneMatch: boolean;
+
+  constructor(private ngxDeepEquals: NgxDeepEqualsPureService) {
+    this.isStandaloneMatch = this.ngxDeepEquals.deepEquals(this.obj8, this.obj9);
+  }
+}
+```
+
 ## Performance
 
 The following is the latest performance result of 2,000 comparisons run in a web worker.
