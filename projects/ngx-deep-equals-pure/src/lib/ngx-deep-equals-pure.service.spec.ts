@@ -1,12 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 
 import { NgxDeepEqualsPureService } from './ngx-deep-equals-pure.service';
+import { NgxDeepEqualsPureModule } from 'NgxDeepEqualsPure';
 
 describe('NgxDeepEqualsPureService', () => {
   let service: NgxDeepEqualsPureService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [NgxDeepEqualsPureService]
+    });
     service = TestBed.inject(NgxDeepEqualsPureService);
   });
 
