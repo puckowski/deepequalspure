@@ -29,25 +29,25 @@ https://www.npmjs.com/package/ngx-deep-equals-pure
 
 In the appropriate module, such as ```AppModule```, add the following to ```providers```:
 
-```
+```javascript
 providers: [NgxDeepEqualsPureService],
 ```
 
 In a component part of a module where NgxDeepEqualsPureService is provided, inject the deep equals service in the constructor like so:
 
-```
+```javascript
 constructor(private ngxDeepEquals: NgxDeepEqualsPureService) {
 ```
 
 Then use NgxDeepEqualsPure like so:
 
-```
+```javascript
 this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
 ```
 
 Alternatively, construct a standalone component like the following:
 
-```
+```javascript
 import { Component } from '@angular/core';
 import { NgxDeepEqualsPureModule, NgxDeepEqualsPureService } from 'NgxDeepEqualsPure';
 
