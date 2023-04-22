@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgxDeepEqualsPureModule, NgxDeepEqualsPureService } from 'NgxDeepEqualsPure';
+import { NgxDeepEqualsPureModule, NgxDeepEqualsPureService } from 'ngx-deep-equals-pure';
 
 @Component({
   selector: 'app-standalone-test',

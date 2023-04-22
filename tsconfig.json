@@ -3,13 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "NgxDeepEqualsPure": [
-        "dist/ngx-deep-equals-pure"
-      ],
-      "ngx-deep-equals-pure": [
-        "dist/ngx-deep-equals-pure/ngx-deep-equals-pure",
-        "dist/ngx-deep-equals-pure"
-      ]
+
     },
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
