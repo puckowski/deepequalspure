@@ -1,7 +1,11 @@
 # NgxDeepEqualsPure
 
 Note:
-Please use version 0.3.0+ for Angular 12.0+ projects. Please use version 0.2.5 for projects using Angular 11.0 and below. Version 0.4.0+ supports use in Web Workers.
+- Please use version 0.3.0+ for Angular 12.0+ projects. 
+- Please use version 0.2.5 for projects using Angular 11.0 and below. 
+- Version 0.4.0+ supports use in Web Workers.
+- Version 0.4.3+ supports Standalone Components.
+- Version 0.4.2 is malformed and should not be used.
 
 This is a package intended to provide a deep equals function for JavaScript objects without requiring numerous dependencies. Other packages which provide a deep equals function, like Lodash or deep-equal, require a large number of dependencies or they are themselves very large. This contributes to unnecessary bloat and, ultimately, poor application load performance.
 
@@ -29,25 +33,25 @@ https://www.npmjs.com/package/ngx-deep-equals-pure
 
 In the appropriate module, such as ```AppModule```, add the following to ```providers```:
 
-```
+```javascript
 providers: [NgxDeepEqualsPureService],
 ```
 
 In a component part of a module where NgxDeepEqualsPureService is provided, inject the deep equals service in the constructor like so:
 
-```
+```javascript
 constructor(private ngxDeepEquals: NgxDeepEqualsPureService) {
 ```
 
 Then use NgxDeepEqualsPure like so:
 
-```
+```javascript
 this.ngxDeepEquals.deepEquals(this.obj1, this.obj2);
 ```
 
 Alternatively, construct a standalone component like the following:
 
-```
+```javascript
 import { Component } from '@angular/core';
 import { NgxDeepEqualsPureModule, NgxDeepEqualsPureService } from 'NgxDeepEqualsPure';
 
