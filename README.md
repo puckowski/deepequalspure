@@ -3,7 +3,7 @@
 Note:
 - Please use version 0.3.0+ for Angular 12.0+ projects. 
 - Please use version 0.2.5 for projects using Angular 11.0 and below. 
-- Version 0.4.0+ supports use in Web Workers.
+- Version 0.4.0+ supports use in Web Workers (see example project in this repository).
 - Version 0.4.3+ supports Standalone Components.
 - Version 0.4.2 is malformed and should not be used.
 
