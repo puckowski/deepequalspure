@@ -299,7 +299,7 @@ const obj9: any = { c: 2, b: 'a' };
 Use command:
 
 ```
-ng build NgxDeepEqualsPure --prod
+ng build NgxDeepEqualsPure --configuration production
 ```
 
 ## Running benchmark
