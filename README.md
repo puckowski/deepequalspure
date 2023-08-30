@@ -7,6 +7,7 @@ Note:
 - Version 0.4.2 is malformed and should not be used.
 - Version 0.4.3+ supports Standalone Components.
 - Version 0.5.0 supports Angular 16.
+- Version 1.0.0 supports Angular 17.
 
 This is a package intended to provide a deep equals function for JavaScript objects without requiring numerous dependencies. Other packages which provide a deep equals function, like Lodash or deep-equal, require a large number of dependencies or they are themselves very large. This contributes to unnecessary bloat and, ultimately, poor application load performance.
 
