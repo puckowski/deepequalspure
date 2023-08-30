@@ -21,7 +21,7 @@
     "bootstrap": "^4.4.1",
     "deep-equal": "^2.0.1",
     "lodash": "^4.17.15",
-    "ngx-deep-equals-pure": "^0.4.3",
+    "ngx-deep-equals-pure": "^1.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
