@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VERSION } from '@angular/core';
 
 @Component({
   selector: 'eq-pure-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DeepEqualsPure';
+  public angularVersion = VERSION.full;
 }
