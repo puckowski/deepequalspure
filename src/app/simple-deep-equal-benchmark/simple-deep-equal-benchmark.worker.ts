@@ -359,14 +359,28 @@ export class SimpleDeepEqualBenchmark {
 
 addEventListener('message', ({ data }) => {
   // Remove declaration
-  let body = data.replace('deepEquals(firstObject, secondObject) {', '').trim();
-  // Remove trailing }
-  body = body.substring(0, body.length - 1);
-  // Replace function name with injected variable name
-  const ngxDeepEquals = Function('firstObject', 'secondObject', body.replaceAll('this.deepEquals', 'this.ngxDeepEquals'));
-  const simpleBenchmark: SimpleDeepEqualBenchmark = new SimpleDeepEqualBenchmark(ngxDeepEquals);
+  let body: string = '';
+  if (data.includes('deepEquals(t,n){')) {
+    body = data.replace('deepEquals(t,n){', '').trim();
+    // Remove trailing }
+    body = body.substring(0, body.length - 1);
+    // Replace function name with injected variable name
+    const ngxDeepEquals = Function('t', 'n', body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
+    const simpleBenchmark: SimpleDeepEqualBenchmark = new SimpleDeepEqualBenchmark(ngxDeepEquals);
 
-  simpleBenchmark.run();
+    simpleBenchmark.run();
 
-  postMessage(simpleBenchmark.getBenchResults());
+    postMessage(simpleBenchmark.getBenchResults());
+  } else if (data.includes('')) {
+    body = data.replace('deepEquals(firstObject, secondObject) {', '').trim();
+    // Remove trailing }
+    body = body.substring(0, body.length - 1);
+    // Replace function name with injected variable name
+    const ngxDeepEquals = Function('firstObject', 'secondObject', body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
+    const simpleBenchmark: SimpleDeepEqualBenchmark = new SimpleDeepEqualBenchmark(ngxDeepEquals);
+
+    simpleBenchmark.run();
+
+    postMessage(simpleBenchmark.getBenchResults());
+  }
 });
