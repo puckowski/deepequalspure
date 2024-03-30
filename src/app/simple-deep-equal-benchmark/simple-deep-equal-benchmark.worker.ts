@@ -360,8 +360,11 @@ export class SimpleDeepEqualBenchmark {
 addEventListener('message', ({ data }) => {
   // Remove declaration
   let body: string = '';
-  if (data.includes('deepEquals(t,n){')) {
-    body = data.replace('deepEquals(t,n){', '').trim();
+  if (/deepEquals\(.+,.+\)/.test(data)) {
+    const firstVar = data.substring(11, data.indexOf(','));
+    const secondVar = data.substring(data.indexOf(',') + 1, data.indexOf(')'));
+
+    body = data.replace('deepEquals(' + firstVar + ',' + secondVar + '){', '').trim();
     // Remove trailing }
     body = body.substring(0, body.length - 1);
     // Replace function name with injected variable name
