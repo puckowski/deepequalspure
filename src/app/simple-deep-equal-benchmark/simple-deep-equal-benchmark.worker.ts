@@ -360,7 +360,7 @@ export class SimpleDeepEqualBenchmark {
 addEventListener('message', ({ data }) => {
   // Remove declaration
   let body: string = '';
-  if (/deepEquals\(.+,.+\)/.test(data)) {
+  if (/deepEquals\(.+,.+\){/.test(data)) {
     const firstVar = data.substring(11, data.indexOf(','));
     const secondVar = data.substring(data.indexOf(',') + 1, data.indexOf(')'));
 
@@ -368,7 +368,7 @@ addEventListener('message', ({ data }) => {
     // Remove trailing }
     body = body.substring(0, body.length - 1);
     // Replace function name with injected variable name
-    const ngxDeepEquals = Function('t', 'n', body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
+    const ngxDeepEquals = Function('e', 't', body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
     const simpleBenchmark: SimpleDeepEqualBenchmark = new SimpleDeepEqualBenchmark(ngxDeepEquals);
 
     simpleBenchmark.run();
