@@ -368,7 +368,7 @@ addEventListener('message', ({ data }) => {
     // Remove trailing }
     body = body.substring(0, body.length - 1);
     // Replace function name with injected variable name
-    const ngxDeepEquals = Function('e', 't', body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
+    const ngxDeepEquals = Function(firstVar, secondVar, body.replace(/this\.deepEquals/g, 'this.ngxDeepEquals'));
     const simpleBenchmark: SimpleDeepEqualBenchmark = new SimpleDeepEqualBenchmark(ngxDeepEquals);
 
     simpleBenchmark.run();
