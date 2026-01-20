@@ -1,54 +1,62 @@
 <h1>Simple Benchmark</h1>
 
-<div *ngIf="getIsLoading() === false">
+@if (getIsLoading() === false) {
+  <div>
     <table class="table-average table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">ngx-deep-equals-pure</th>
-                <th scope="col">Lodash isEqual</th>
-                <th scope="col">deep-equal</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let result of getBenchData(); let i = index">
-                <td>{{i + 1}}</td>
-                <td>{{result.ngx}}s</td>
-                <td>{{result.lodash}}s</td>
-                <td>{{result.deep}}s</td>
-            </tr>
-            <tr>
-                <td>Average</td>
-                <td>{{getIsMatchAverage()}}s</td>
-                <td>{{getIsMatchLodashAverage()}}s</td>
-                <td>{{getIsMatchDeepEqualAverage()}}s</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ngx-deep-equals-pure</th>
+          <th scope="col">Lodash isEqual</th>
+          <th scope="col">deep-equal</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (result of getBenchData(); track result; let i = $index) {
+          <tr>
+            <td>{{i + 1}}</td>
+            <td>{{result.ngx}}s</td>
+            <td>{{result.lodash}}s</td>
+            <td>{{result.deep}}s</td>
+          </tr>
+        }
+        <tr>
+          <td>Average</td>
+          <td>{{getIsMatchAverage()}}s</td>
+          <td>{{getIsMatchLodashAverage()}}s</td>
+          <td>{{getIsMatchDeepEqualAverage()}}s</td>
+        </tr>
+      </tbody>
     </table>
-</div>
-<div *ngIf="getIsLoading() === true">
+  </div>
+}
+@if (getIsLoading() === true) {
+  <div>
     Running benchmark...
     <div class="spinner-border" role="status">
     </div>
-</div>
+  </div>
+}
 
 <h1>Simple Test Results</h1>
 
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">ngx-deep-equals-pure</th>
-            <th scope="col">Lodash isEqual</th>
-            <th scope="col">deep-equal</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let result of getTestData(); let i = index">
-            <td>{{i + 1}}</td>
-            <td>{{result.ngx}}</td>
-            <td>{{result.lodash}}</td>
-            <td>{{result.deep}}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ngx-deep-equals-pure</th>
+      <th scope="col">Lodash isEqual</th>
+      <th scope="col">deep-equal</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (result of getTestData(); track result; let i = $index) {
+      <tr>
+        <td>{{i + 1}}</td>
+        <td>{{result.ngx}}</td>
+        <td>{{result.lodash}}</td>
+        <td>{{result.deep}}</td>
+      </tr>
+    }
+  </tbody>
 </table>

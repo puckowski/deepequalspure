@@ -6,7 +6,8 @@ import { NgxDeepEqualsPureService } from 'ngx-deep-equals-pure';
 @Component({
   selector: 'eq-pure-simple-deep-equal-benchmark',
   templateUrl: './simple-deep-equal-benchmark.component.html',
-  styleUrls: ['./simple-deep-equal-benchmark.component.scss']
+  styleUrls: ['./simple-deep-equal-benchmark.component.scss'],
+  standalone: false
 })
 export class SimpleDeepEqualBenchmarkComponent implements OnInit {
 
